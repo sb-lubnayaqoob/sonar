@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2014-2021 the original author or authors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<changelog>
+    <changeset id="first-changelog" author="fbiville">
+        <precondition if-not-met="FAIL">
+            <query><![CDATA[MATCH (npre) RETURN npre]]></query>
+        </precondition>
+        <query><![CDATA[MATCH (n) RETURN n]]></query>
+    </changeset>
+    <changeset id="second-changelog" author="team">
+        <precondition if-not-met="MARK_AS_EXECUTED">
+            <and>
+                <query><![CDATA[MATCH (mpre1) RETURN mpre1]]></query>
+                <query><![CDATA[MATCH (mpre2) RETURN mpre2]]></query>
+            </and>
+        </precondition>
+        <query><![CDATA[MATCH (m) RETURN m]]></query>
+    </changeset>
+    <changeset id="third-changelog" author="team">
+        <precondition if-not-met="MARK_AS_EXECUTED">
+            <or>
+                <query><![CDATA[MATCH (mpre1) RETURN mpre1]]></query>
+                <query><![CDATA[MATCH (mpre2) RETURN mpre2]]></query>
+            </or>
+        </precondition>
+        <query><![CDATA[MATCH m RETURN m]]></query>
+    </changeset>
+    <changeset id="fourth-changelog" author="fbiville">
+        <precondition if-not-met="FAIL">
+            <or>
+                <and>
+                    <query><![CDATA[MATCH (npre1) RETURN npre1]]></query>
+                    <query><![CDATA[MATCH (npre2) RETURN npre2]]></query>
+                </and>
+                <query><![CDATA[MATCH (npre) RETURN npre]]></query>
+            </or>
+        </precondition>
+        <query><![CDATA[MATCH (m)]]></query>
+    </changeset>
+</changelog>
